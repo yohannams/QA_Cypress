@@ -1,13 +1,19 @@
 import Register from "../support/page-objects/register";
 
-const randomId = () => Cypress._.random(0, 1e6);
+let email;
+let emailArr = [];
+
+const randomEmail = () => {
+  const randomId = () => Cypress._.random(0, 1e6);
+  const id = randomId();
+  email = `email_${id}@example.com`;
+  emailArr.push(email);
+};
 
 describe("register", () => {
-  let email;
   beforeEach(() => {
     cy.visit("/");
-    const id = randomId();
-    email = `email_${id}@example.com`;
+    randomEmail();
   });
 
   it("success register random email", () => {
@@ -101,10 +107,7 @@ describe("register", () => {
 });
 
 describe("Register using POM", () => {
-  const id = randomId();
-  let email = `email_${id}@example.com`;
-
-  it.only("Success Register", () => {
+  it("Success Register", () => {
     Register.visit();
     Register.fillFirstName("Yohanna");
     Register.fillLastName("Santoso");
@@ -115,3 +118,5 @@ describe("Register using POM", () => {
     cy.get("[href='/customer/info']").should("contain.text", email);
   });
 });
+
+export { emailArr };
