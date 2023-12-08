@@ -57,7 +57,9 @@ describe("auth spec", () => {
       "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index"
     );
     cy.get(".oxd-userdropdown-tab").click();
+    cy.wait(500);
     cy.get(":nth-child(4) > .oxd-userdropdown-link").click();
+    cy.wait(500);
     cy.url().should(
       "eq",
       "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login"

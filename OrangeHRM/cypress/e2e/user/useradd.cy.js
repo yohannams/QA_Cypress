@@ -125,6 +125,9 @@ describe("user add spec", () => {
       ":nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-input"
     ).type("Ess12345"); //confirm password
     cy.get(".oxd-button--secondary").click({ force: true });
-    cy.get(".oxd-input-group > .oxd-text").should("have.text", "Required");
+    cy.get(":nth-child(4) > .oxd-input-group > .oxd-text").should(
+      "have.text",
+      "Required"
+    );
   });
 });
